@@ -1,0 +1,14 @@
+﻿SELECT DISTINCT MFR
+FROM ORDERS
+WHERE AMOUNT % 2 = 0  -- Парна сума замовлення
+AND QTY % 2 = 1 -- Непарна кількість замовлених одиниць товару
+ORDER BY MFR;
+
+SELECT MFR_ID, ROUND(SUM(QTY_ON_HAND * PRICE), 2) AS TotalValue, ROUND(AVG(PRICE), 2) AS AverageValue
+FROM PRODUCTS
+GROUP BY MFR_ID
+ORDER BY MFR_ID;
+
+SELECT TOP 1 WITH TIES NAME, ROUND(ABS(QUOTA - SALES), 2) AS RoundedSalesDifference, AGE - (2024 - YEAR(HIRE_DATE)) AS HIREAGE
+FROM SALESREPS
+ORDER BY RoundedSalesDifference DESC
